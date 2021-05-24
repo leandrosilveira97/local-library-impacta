@@ -1,0 +1,41 @@
+name: Date
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  job1:
+    name: Primeiro Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Passo 1
+        run: date
+  
+  job2:
+    name: Segundo Job
+    runs-on: windows-latest
+    steps:
+      - name: Passo 1
+        run: date
+  
+  job3:
+    name: Terceiro Job
+    runs-on: macos-latest
+    steps:
+      - name: Passo 1
+        run: date
+        
+  job4:
+    name: Quarto Job
+    runs-on: ubuntu-latest
+    needs: [job1, job2, job3]
+    
+    steps:
+      - name: Ultimo passo
+        run: curl github.com
