@@ -1,0 +1,28 @@
+name: Artefato
+
+on:
+  push:
+    branches: [ main ]
+    
+env:
+  ARTEFATO_VAR: 'Nome do Artefato'
+
+jobs:
+  artefato:
+    runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: 12
+      JOB_VAR: 'variavel job'
+      
+    steps:
+    
+    - name: Checkout
+      uses: actions/checkout@v2.3.4
+    
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.3
+      with:
+        name: ${{ env.ARTEFATO_VAR }}
+        path: .
+        if-no-files-found: error
+        retention-days: 3
